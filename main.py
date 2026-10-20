@@ -8,11 +8,15 @@ app = FastAPI(
     redoc_url=None,
 )
 
+
 @app.get("/")
 def health_check():
-    return {"status": "VayuSense voice endpoint is running"}
+    return {
+        "status": "VayuSense voice endpoint is running"
+    }
 
-@app.get("/twiml")
+
+@app.api_route("/twiml", methods=["GET", "POST"])
 def get_voice_instructions():
     xml = """<?xml version="1.0" encoding="UTF-8"?>
 <Response>
